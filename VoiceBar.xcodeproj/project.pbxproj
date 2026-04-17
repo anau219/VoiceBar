@@ -1,0 +1,415 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		39C65BADB0420FF0C641AB4B /* VoiceBarApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B620EA360DFBDEB34A00954 /* VoiceBarApp.swift */; };
+		6099C34BBB3BD1C2ACDE1BAE /* AudioTrimmer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB355B3700DC509C2918B61A /* AudioTrimmer.swift */; };
+		6D28AE1B2B22A495A2A37459 /* TextInserter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47363F90278A680D8C3B02EA /* TextInserter.swift */; };
+		70D0FE951246DBB3E9191EE8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A7F779A79D9B36D17AF63B /* AppDelegate.swift */; };
+		8D8F2BF41E9EB3F73D93D42D /* HotKey in Frameworks */ = {isa = PBXBuildFile; productRef = C1E2814E6669BD695B47194B /* HotKey */; };
+		A1589A0A2F91847D0006686F /* VoiceBar.icon in Resources */ = {isa = PBXBuildFile; fileRef = A1589A092F91847D0006686F /* VoiceBar.icon */; };
+		C2CD8C08CBF110EA0273ADFF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE7A753D270DA7B17157C4A5 /* Assets.xcassets */; };
+		B3A1C2D4E5F6A7B8C9D0FFFF /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A1C2D4E5F6A7B8C9D0E1F2 /* MainView.swift */; };
+		FB1234567890ABCDEF012345 /* FeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1234567890ABCDEF098765 /* FeedbackView.swift */; };
+		D6BFD6CE0E4A8C45074ABA7C /* MenuBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDF03BBE099B4F12518620F /* MenuBarView.swift */; };
+		D9F8580F96716AF29B96B86D /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 13D4D352571282FD823C9FC0 /* LaunchAtLogin */; };
+		F072DBDE77125C25170FFCC6 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D08E86DDFF9F360DFC407A7 /* AppState.swift */; };
+		F1FED0B63F0060F1C2962A64 /* WhisperKit in Frameworks */ = {isa = PBXBuildFile; productRef = FF21E44FF5BC8FD00263175A /* WhisperKit */; };
+		F84D5EFE160DD1C623EBA1AE /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105DC59E26D26DD8549AE5E1 /* AudioRecorder.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		105DC59E26D26DD8549AE5E1 /* AudioRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
+		1A180F1964CB1F8A8632B3F2 /* VoiceBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VoiceBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		47363F90278A680D8C3B02EA /* TextInserter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInserter.swift; sourceTree = "<group>"; };
+		6D08E86DDFF9F360DFC407A7 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		93A7F779A79D9B36D17AF63B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		9B620EA360DFBDEB34A00954 /* VoiceBarApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceBarApp.swift; sourceTree = "<group>"; };
+		A1589A092F91847D0006686F /* VoiceBar.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = VoiceBar.icon; sourceTree = "<group>"; };
+		D841DCCEED6BAD127F6A2E74 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		DB355B3700DC509C2918B61A /* AudioTrimmer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioTrimmer.swift; sourceTree = "<group>"; };
+		B3A1C2D4E5F6A7B8C9D0E1F2 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		FB1234567890ABCDEF098765 /* FeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackView.swift; sourceTree = "<group>"; };
+		DCDF03BBE099B4F12518620F /* MenuBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarView.swift; sourceTree = "<group>"; };
+		E01DC0601A0DBE08374AE61D /* VoiceBar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = VoiceBar.entitlements; sourceTree = "<group>"; };
+		FE7A753D270DA7B17157C4A5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B4D3828081CA56EDA7D13CAE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F1FED0B63F0060F1C2962A64 /* WhisperKit in Frameworks */,
+				8D8F2BF41E9EB3F73D93D42D /* HotKey in Frameworks */,
+				D9F8580F96716AF29B96B86D /* LaunchAtLogin in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		260EDA4D55890F94E5D18C7B = {
+			isa = PBXGroup;
+			children = (
+				BAB674EFF59D443D8D43CD4C /* VoiceBar */,
+				9E63F443EBCA0138494A3781 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9E63F443EBCA0138494A3781 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1A180F1964CB1F8A8632B3F2 /* VoiceBar.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BAB674EFF59D443D8D43CD4C /* VoiceBar */ = {
+			isa = PBXGroup;
+			children = (
+				6D08E86DDFF9F360DFC407A7 /* AppState.swift */,
+				FE7A753D270DA7B17157C4A5 /* Assets.xcassets */,
+				105DC59E26D26DD8549AE5E1 /* AudioRecorder.swift */,
+				DB355B3700DC509C2918B61A /* AudioTrimmer.swift */,
+				93A7F779A79D9B36D17AF63B /* AppDelegate.swift */,
+				D841DCCEED6BAD127F6A2E74 /* Info.plist */,
+				B3A1C2D4E5F6A7B8C9D0E1F2 /* MainView.swift */,
+				FB1234567890ABCDEF098765 /* FeedbackView.swift */,
+				DCDF03BBE099B4F12518620F /* MenuBarView.swift */,
+				47363F90278A680D8C3B02EA /* TextInserter.swift */,
+				E01DC0601A0DBE08374AE61D /* VoiceBar.entitlements */,
+				9B620EA360DFBDEB34A00954 /* VoiceBarApp.swift */,
+				A1589A092F91847D0006686F /* VoiceBar.icon */,
+			);
+			path = VoiceBar;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		076B437C94C6A3449DC5E477 /* VoiceBar */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D1609C00F4455D04ED8B1D6D /* Build configuration list for PBXNativeTarget "VoiceBar" */;
+			buildPhases = (
+				6B8C1A538A129969ACB3467A /* Sources */,
+				FE43A93A99DF10DA3FF6B95C /* Resources */,
+				B4D3828081CA56EDA7D13CAE /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = VoiceBar;
+			packageProductDependencies = (
+				FF21E44FF5BC8FD00263175A /* WhisperKit */,
+				C1E2814E6669BD695B47194B /* HotKey */,
+				13D4D352571282FD823C9FC0 /* LaunchAtLogin */,
+			);
+			productName = VoiceBar;
+			productReference = 1A180F1964CB1F8A8632B3F2 /* VoiceBar.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DD9EABB9BB4010441F6D637E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1600;
+			};
+			buildConfigurationList = 9AD808DAEC8F4340B175AF58 /* Build configuration list for PBXProject "VoiceBar" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 260EDA4D55890F94E5D18C7B;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				2F88C2ED85D8CDFAB6F71275 /* XCRemoteSwiftPackageReference "HotKey" */,
+				B0479F9F40E04D9E3AAEF05C /* XCRemoteSwiftPackageReference "LaunchAtLogin-Modern" */,
+				56A39F5C54342C7C4E563E3D /* XCRemoteSwiftPackageReference "WhisperKit" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 9E63F443EBCA0138494A3781 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				076B437C94C6A3449DC5E477 /* VoiceBar */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FE43A93A99DF10DA3FF6B95C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C2CD8C08CBF110EA0273ADFF /* Assets.xcassets in Resources */,
+				A1589A0A2F91847D0006686F /* VoiceBar.icon in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6B8C1A538A129969ACB3467A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F072DBDE77125C25170FFCC6 /* AppState.swift in Sources */,
+				F84D5EFE160DD1C623EBA1AE /* AudioRecorder.swift in Sources */,
+				6099C34BBB3BD1C2ACDE1BAE /* AudioTrimmer.swift in Sources */,
+				B3A1C2D4E5F6A7B8C9D0FFFF /* LaunchView.swift in Sources */,
+				FB1234567890ABCDEF012345 /* FeedbackView.swift in Sources */,
+				D6BFD6CE0E4A8C45074ABA7C /* MenuBarView.swift in Sources */,
+				70D0FE951246DBB3E9191EE8 /* SettingsView.swift in Sources */,
+				6D28AE1B2B22A495A2A37459 /* TextInserter.swift in Sources */,
+				39C65BADB0420FF0C641AB4B /* VoiceBarApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		053E5E69423FDAFB9C450EE3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		18E8A11AABD6C68680BE1A8D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = VoiceBar;
+				CODE_SIGN_ENTITLEMENTS = VoiceBar/VoiceBar.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_APP_SANDBOX = NO;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = VoiceBar/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = VoiceBar;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.voicebar.app;
+				PRODUCT_NAME = VoiceBar;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		532D857E7C397252691668E9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		CBCC4AB62615168BD347B3EC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = VoiceBar;
+				CODE_SIGN_ENTITLEMENTS = VoiceBar/VoiceBar.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_APP_SANDBOX = NO;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = VoiceBar/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = VoiceBar;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.voicebar.app;
+				PRODUCT_NAME = VoiceBar;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9AD808DAEC8F4340B175AF58 /* Build configuration list for PBXProject "VoiceBar" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				053E5E69423FDAFB9C450EE3 /* Debug */,
+				532D857E7C397252691668E9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		D1609C00F4455D04ED8B1D6D /* Build configuration list for PBXNativeTarget "VoiceBar" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CBCC4AB62615168BD347B3EC /* Debug */,
+				18E8A11AABD6C68680BE1A8D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2F88C2ED85D8CDFAB6F71275 /* XCRemoteSwiftPackageReference "HotKey" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/soffes/HotKey.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.2.1;
+			};
+		};
+		56A39F5C54342C7C4E563E3D /* XCRemoteSwiftPackageReference "WhisperKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/argmaxinc/WhisperKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.12.0;
+			};
+		};
+		B0479F9F40E04D9E3AAEF05C /* XCRemoteSwiftPackageReference "LaunchAtLogin-Modern" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sindresorhus/LaunchAtLogin-Modern.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		13D4D352571282FD823C9FC0 /* LaunchAtLogin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B0479F9F40E04D9E3AAEF05C /* XCRemoteSwiftPackageReference "LaunchAtLogin-Modern" */;
+			productName = LaunchAtLogin;
+		};
+		C1E2814E6669BD695B47194B /* HotKey */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2F88C2ED85D8CDFAB6F71275 /* XCRemoteSwiftPackageReference "HotKey" */;
+			productName = HotKey;
+		};
+		FF21E44FF5BC8FD00263175A /* WhisperKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 56A39F5C54342C7C4E563E3D /* XCRemoteSwiftPackageReference "WhisperKit" */;
+			productName = WhisperKit;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = DD9EABB9BB4010441F6D637E /* Project object */;
+}

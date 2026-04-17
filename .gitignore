@@ -1,0 +1,11 @@
+# Build output
+build/
+DerivedData/
+*.xcuserstate
+xcuserdata/
+
+# macOS
+.DS_Store
+
+# Debug log
+/tmp/voicebar_debug.log

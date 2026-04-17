@@ -1,0 +1,39 @@
+name: VoiceBar
+options:
+  bundleIdPrefix: com.voicebar
+  deploymentTarget:
+    macOS: "14.0"
+  xcodeVersion: "16.0"
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    MACOSX_DEPLOYMENT_TARGET: "14.0"
+packages:
+  WhisperKit:
+    url: https://github.com/argmaxinc/WhisperKit.git
+    from: "0.12.0"
+  HotKey:
+    url: https://github.com/soffes/HotKey.git
+    from: "0.2.1"
+  LaunchAtLogin:
+    url: https://github.com/sindresorhus/LaunchAtLogin-Modern.git
+    from: "1.1.0"
+targets:
+  VoiceBar:
+    type: application
+    platform: macOS
+    sources:
+      - VoiceBar
+    settings:
+      base:
+        INFOPLIST_FILE: VoiceBar/Info.plist
+        CODE_SIGN_ENTITLEMENTS: VoiceBar/VoiceBar.entitlements
+        PRODUCT_BUNDLE_IDENTIFIER: com.voicebar.app
+        ENABLE_APP_SANDBOX: NO
+        PRODUCT_NAME: VoiceBar
+    dependencies:
+      - package: WhisperKit
+      - package: HotKey
+      - package: LaunchAtLogin
+    entitlements:
+      path: VoiceBar/VoiceBar.entitlements
