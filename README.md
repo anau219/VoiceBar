@@ -4,7 +4,11 @@
 
 Hold a hotkey → speak → done. No window to switch to. No copy-paste. Just speak and your words land exactly where you need them.
 
-![VoiceBar menu bar](https://github.com/anau219/VoiceBar/assets/menu-bar-preview.png)
+<p align="center">
+  <img src="assets/screenshot-menu.png" width="280" alt="VoiceBar menu bar dropdown" />
+  &nbsp;&nbsp;&nbsp;
+  <img src="assets/screenshot-main.png" width="280" alt="VoiceBar main window" />
+</p>
 
 ---
 
