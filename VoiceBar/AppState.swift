@@ -17,23 +17,26 @@ enum AppStatus: Equatable {
 final class AppState: ObservableObject {
     @Published var status: AppStatus = .loading
     @Published var downloadedModels: [String] = []
-    @Published var hotkeyLabel: String = "⌘⇧D"
+    @Published var hotkeyLabel: String = "⌥Space"
     @Published var lastTranscription: String?
     @Published var streamingText: String = ""
     @Published var updateCheckMessage: String? = nil
+    @Published var pendingUpdateVersion: String? = nil
     @Published var isAccessibilityTrusted: Bool = false
 
+    @AppStorage("lastUpdateCheckTimestamp") private var lastUpdateCheckTimestamp: Double = 0
+
     @AppStorage("selectedModel") var selectedModel = "openai_whisper-large-v3-v20240930_turbo"
-    @AppStorage("hotkeyKeyCode") private var hotkeyKeyCode: Int = 2 // D
+    @AppStorage("hotkeyKeyCode") private var hotkeyKeyCode: Int = 49 // Space
     @AppStorage("hotkeyModifiers2") private var storedModifiers: Int = -1
-    @AppStorage("showInDock") var showInDock: Bool = false {
+    @AppStorage("showInDock") var showInDock: Bool = true {
         didSet { applyDockPolicy() }
     }
 
     private var hotkeyModifiers: Int {
         get {
             if storedModifiers == -1 {
-                return Int(NSEvent.ModifierFlags.command.union(.shift).rawValue)
+                return Int(NSEvent.ModifierFlags.option.rawValue)
             }
             return storedModifiers
         }
@@ -72,6 +75,7 @@ final class AppState: ObservableObject {
     }
 
     private var hasSetup = false
+    private var pendingAccessibilityRestart = false
 
     func launchSetup() {
         setupIfNeeded()
@@ -133,6 +137,11 @@ final class AppState: ObservableObject {
             throw URLError(.badServerResponse)
         }
         Self.log("submitFeedback: sent successfully")
+    }
+
+    func openAccessibilitySettings() {
+        pendingAccessibilityRestart = true
+        NSWorkspace.shared.open(URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility")!)
     }
 
     func restartApp() {
@@ -211,6 +220,22 @@ final class AppState: ObservableObject {
         try? FileManager.default.createDirectory(at: modelDirectory, withIntermediateDirectories: true)
         scanDownloadedModels()
 
+        // Auto-restart after user grants accessibility in System Settings and returns to VoiceBar.
+        // On Darwin 25+ with ad-hoc signing, AXIsProcessTrusted() never becomes true in the
+        // running process — restart is required for the grant to take effect.
+        NotificationCenter.default.addObserver(
+            forName: NSApplication.didBecomeActiveNotification,
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
+            guard let self, self.pendingAccessibilityRestart else { return }
+            self.pendingAccessibilityRestart = false
+            // Give the system a moment to settle, then restart so TCC grant takes effect.
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                self.restartApp()
+            }
+        }
+
         // Dock icon click when all windows are closed
         NotificationCenter.default.addObserver(
             forName: .voiceBarReopen,
@@ -233,6 +258,13 @@ final class AppState: ObservableObject {
 
         await loadModel(selectedModel)
         registerHotkey()
+
+        // Silent update check once per day
+        let oneDayAgo = Date().timeIntervalSince1970 - 86400
+        if lastUpdateCheckTimestamp < oneDayAgo {
+            await checkForUpdates(silent: true)
+        }
+
         Self.log("setup complete")
     }
 
@@ -251,15 +283,45 @@ final class AppState: ObservableObject {
 
     func loadModel(_ variant: String) async {
         whisperKit = nil
-        status = .downloading(progress: 0)
 
+        // Check if model is already on disk
+        let modelPath = modelDirectory
+            .appendingPathComponent("models/argmaxinc/whisperkit-coreml")
+            .appendingPathComponent(variant)
+        var localFolder: URL? = FileManager.default.fileExists(atPath: modelPath.path) ? modelPath : nil
+
+        // Download phase — only if not already present
+        if localFolder == nil {
+            status = .downloading(progress: 0)
+            do {
+                localFolder = try await WhisperKit.download(
+                    variant: variant,
+                    downloadBase: modelDirectory
+                ) { [weak self] progress in
+                    Task { @MainActor [weak self] in
+                        self?.status = .downloading(progress: progress.fractionCompleted)
+                    }
+                }
+                scanDownloadedModels()
+                Self.log("loadModel: download complete")
+            } catch {
+                Self.log("loadModel: download failed: \(error)")
+                status = .error(message: "Download failed: \(error.localizedDescription)")
+                try? await Task.sleep(for: .seconds(5))
+                if case .error = status { status = .idle }
+                return
+            }
+        }
+
+        // Load phase
         do {
             status = .loading
             let config = WhisperKitConfig(
                 model: variant,
                 downloadBase: modelDirectory,
+                modelFolder: localFolder?.path,
                 verbose: false,
-                load: true  // ensures loadModels() runs so tokenizer is ready for streaming
+                load: true
             )
             whisperKit = try await WhisperKit(config)
             selectedModel = variant
@@ -587,9 +649,9 @@ final class AppState: ObservableObject {
 
     // MARK: - Update Check
 
-    func checkForUpdates() async {
-        updateCheckMessage = "Checking..."
-        let repoAPI = "https://api.github.com/repos/voicebar-app/voicebar/releases/latest"
+    func checkForUpdates(silent: Bool = false) async {
+        if !silent { updateCheckMessage = "Checking..." }
+        let repoAPI = "https://api.github.com/repos/anau219/VoiceBar/releases/latest"
         guard let url = URL(string: repoAPI) else { return }
 
         do {
@@ -597,9 +659,11 @@ final class AppState: ObservableObject {
             request.setValue("application/vnd.github+json", forHTTPHeaderField: "Accept")
             let (data, _) = try await URLSession.shared.data(for: request)
 
+            lastUpdateCheckTimestamp = Date().timeIntervalSince1970
+
             guard let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
                   let tagName = json["tag_name"] as? String else {
-                updateCheckMessage = "Could not fetch release info"
+                if !silent { updateCheckMessage = "Could not fetch release info" }
                 return
             }
 
@@ -607,12 +671,14 @@ final class AppState: ObservableObject {
             let current = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "0"
 
             if isNewer(latest, than: current) {
-                updateCheckMessage = "Version \(latest) available"
+                pendingUpdateVersion = latest
+                if !silent { updateCheckMessage = "Version \(latest) available — see banner above" }
             } else {
-                updateCheckMessage = "You're up to date (v\(current))"
+                pendingUpdateVersion = nil
+                if !silent { updateCheckMessage = "You're up to date (v\(current))" }
             }
         } catch {
-            updateCheckMessage = "Update check failed"
+            if !silent { updateCheckMessage = "Update check failed" }
         }
     }
 

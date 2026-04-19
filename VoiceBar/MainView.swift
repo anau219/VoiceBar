@@ -39,7 +39,7 @@ struct MainView: View {
                         Spacer()
                         VStack(spacing: 6) {
                             Button("Open Settings") {
-                                NSWorkspace.shared.open(URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility")!)
+                                appState.openAccessibilitySettings()
                             }
                             .buttonStyle(.bordered)
                             .controlSize(.small)
@@ -49,6 +49,29 @@ struct MainView: View {
                             .buttonStyle(.borderedProminent)
                             .controlSize(.small)
                         }
+                    }
+                    .padding(.vertical, 4)
+                }
+            }
+
+            if let newVersion = appState.pendingUpdateVersion {
+                Section {
+                    HStack(spacing: 10) {
+                        Image(systemName: "arrow.down.circle.fill")
+                            .foregroundStyle(.blue)
+                            .font(.title3)
+                        VStack(alignment: .leading, spacing: 3) {
+                            Text("VoiceBar \(newVersion) is available")
+                                .font(.callout).bold()
+                            Text("You're on v\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "?"). Download the update to get the latest fixes.")
+                                .font(.caption).foregroundStyle(.secondary)
+                        }
+                        Spacer()
+                        Button("Download") {
+                            NSWorkspace.shared.open(URL(string: "https://github.com/anau219/VoiceBar/releases/latest")!)
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .controlSize(.small)
                     }
                     .padding(.vertical, 4)
                 }
@@ -103,7 +126,7 @@ struct MainView: View {
                                 .lineLimit(2)
                         }
                         Button("Check now") {
-                            Task { await appState.checkForUpdates() }
+                            Task { await appState.checkForUpdates(silent: false) }
                         }
                     }
                 }
