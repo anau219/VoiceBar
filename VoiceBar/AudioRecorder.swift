@@ -2,16 +2,17 @@ import AVFoundation
 import Foundation
 
 final class AudioRecorder {
-    private var audioEngine = AVAudioEngine()
+    private var audioEngine: AVAudioEngine?
     private var audioFile: AVAudioFile?
     private var tempURL: URL?
 
     func startRecording() throws {
+        audioEngine = AVAudioEngine()
         let tempDir = FileManager.default.temporaryDirectory
         let url = tempDir.appendingPathComponent("voicebar_\(UUID().uuidString).wav")
         tempURL = url
 
-        let inputNode = audioEngine.inputNode
+        let inputNode = audioEngine!.inputNode
         let recordingFormat = AVAudioFormat(
             commonFormat: .pcmFormatFloat32,
             sampleRate: 16000,
@@ -50,13 +51,14 @@ final class AudioRecorder {
             try? audioFile.write(from: convertedBuffer)
         }
 
-        audioEngine.prepare()
-        try audioEngine.start()
+        audioEngine!.prepare()
+        try audioEngine!.start()
     }
 
     func stopRecording() -> URL? {
-        audioEngine.inputNode.removeTap(onBus: 0)
-        audioEngine.stop()
+        audioEngine?.inputNode.removeTap(onBus: 0)
+        audioEngine?.stop()
+        audioEngine = nil
         audioFile = nil
         return tempURL
     }
