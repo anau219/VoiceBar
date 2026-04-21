@@ -200,6 +200,19 @@ struct MainView: View {
         }
         .formStyle(.grouped)
         .frame(minWidth: 400, minHeight: 620)
+        .safeAreaInset(edge: .bottom) {
+            HStack {
+                Spacer()
+                Link(destination: URL(string: "https://alchemyfy.com")!) {
+                    Text("Made in Alchemyfy Lab")
+                        .font(.caption2)
+                        .foregroundStyle(.tertiary)
+                }
+                .buttonStyle(.plain)
+                Spacer()
+            }
+            .padding(.vertical, 8)
+        }
         .toolbar {
             ToolbarItem(placement: .automatic) {
                 Button("Send Feedback") {

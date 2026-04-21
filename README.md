@@ -12,6 +12,36 @@ Hold a hotkey → speak → done. No window to switch to. No copy-paste. Just sp
 
 ---
 
+## Videos
+
+<table>
+<tr>
+<td align="center" width="33%">
+  <a href="https://youtu.be/f54ixUzXieg">
+    <img src="https://img.youtube.com/vi/f54ixUzXieg/mqdefault.jpg" width="240" alt="App Demo" /><br/>
+    <b>App Demo</b>
+  </a><br/>
+  <sub>See dictation in action</sub>
+</td>
+<td align="center" width="33%">
+  <a href="https://youtu.be/oQkBXU36Vh0">
+    <img src="https://img.youtube.com/vi/oQkBXU36Vh0/mqdefault.jpg" width="240" alt="Setup Guide" /><br/>
+    <b>Setup Guide</b>
+  </a><br/>
+  <sub>First launch, permissions, hotkey</sub>
+</td>
+<td align="center" width="33%">
+  <a href="https://youtu.be/qhwzWDy-UYU">
+    <img src="https://img.youtube.com/vi/qhwzWDy-UYU/mqdefault.jpg" width="240" alt="Open Safely on macOS" /><br/>
+    <b>Open Safely on macOS</b>
+  </a><br/>
+  <sub>Gatekeeper warning explained</sub>
+</td>
+</tr>
+</table>
+
+---
+
 ## Why VoiceBar
 
 Most dictation tools make you dictate into their own box, then copy the result. VoiceBar skips that entirely — it inserts text directly at your cursor, in whatever app you're already using. Write emails, fill forms, take notes, code comments — without ever leaving the window you're in.

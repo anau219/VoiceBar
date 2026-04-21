@@ -73,6 +73,10 @@ struct MenuBarView: View {
 
             Divider()
 
+            Button("About VoiceBar") {
+                appState.openAboutWindow()
+            }
+
             Button("Quit VoiceBar") {
                 NSApplication.shared.terminate(nil)
             }

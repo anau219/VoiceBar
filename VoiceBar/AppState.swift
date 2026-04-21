@@ -50,6 +50,7 @@ final class AppState: ObservableObject {
     private var lastNonSelfApp: NSRunningApplication?
     private var mainWindow: NSWindow?
     private var feedbackWindow: NSWindow?
+    private var aboutWindow: NSWindow?
     private var deferredPasteMonitor: Any?
 
     // Replace with your deployed Google Apps Script web app URL
@@ -112,6 +113,33 @@ final class AppState: ObservableObject {
             object: window,
             queue: .main
         ) { [weak self] _ in self?.feedbackWindow = nil }
+    }
+
+    func openAboutWindow() {
+        if let window = aboutWindow, window.isVisible {
+            window.makeKeyAndOrderFront(nil)
+            NSApp.activate(ignoringOtherApps: true)
+            return
+        }
+        let window = NSWindow(
+            contentRect: NSRect(x: 0, y: 0, width: 320, height: 260),
+            styleMask: [.titled, .closable],
+            backing: .buffered,
+            defer: false
+        )
+        window.isReleasedWhenClosed = false
+        window.title = "About VoiceBar"
+        window.contentView = NSHostingView(rootView: AboutView())
+        window.center()
+        window.makeKeyAndOrderFront(nil)
+        NSApp.activate(ignoringOtherApps: true)
+        aboutWindow = window
+
+        NotificationCenter.default.addObserver(
+            forName: NSWindow.willCloseNotification,
+            object: window,
+            queue: .main
+        ) { [weak self] _ in self?.aboutWindow = nil }
     }
 
     func submitFeedback(message: String, email: String, notify: Bool, appVersion: String, macOSVersion: String) async throws {
